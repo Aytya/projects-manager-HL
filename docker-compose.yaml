@@ -7,23 +7,21 @@ services:
       - "8080:8080"
     depends_on:
       - db
-    environment:
-      DB_HOST: ${DB_HOST}
-      DB_PORT: ${DB_PORT}
-      DB_USER: ${DB_USER}
-      DB_PASSWORD: ${DB_PASSWORD}
-      DB_NAME: ${DB_NAME}
-      DB_SSLMODE: ${DB_SSLMODE}
+    env_file:
+      - .env
 
   db:
     restart: always
-    image: postgres
-    volumes:
-      - ./postgres-data:/var/lib/postgresql/data
+    container_name: db-project-manager
+    image: 'postgres:13.1-alpine'
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_DB: postgres
-      POSTGRES_HOST_AUTH_METHOD: trust
-      POSTGRES_SSLMODE: disable
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_DB: ${DB_NAME}
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - db-data:/var/lib/postgresql/data
     ports:
-      - 5436:5432
+      - 5436:${DB_PORT}
+
+volumes:
+  db-data:
