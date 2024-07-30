@@ -1,9 +1,9 @@
 port: "8080"
 
 db:
-  username: "postgres"
-  password: "7212Hey)"
-  host: "db"
+  username: "ayazhan"
+  password: "uDpaNgwJ4CTWSIhB3GHvVB1oZVHKJnH5"
+  host: "dpg-cqkgpcaju9rs738nuu80-a.frankfurt-postgres.render.com"
   port: 5432
-  dbname: "postgres"
-  sslmode: "disable"
+  dbname: "project_management_db_hdvj"
+  sslmode: "require"
