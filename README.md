@@ -1,6 +1,6 @@
-# Go - Service for compiling task lists
+# Go - Project Management Service
 
-### RESTful API for the Todo List microservice.
+### REST API for managing tasks that include three entities: User, Task, and Project. The service support CRUD operations, published on GitHub, embedded in Render, and run using Docker Compose and Makefile.
 
 ## Getting Started
 
