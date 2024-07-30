@@ -11,6 +11,11 @@ import (
 	"log"
 )
 
+// @title Projects-Manager
+// @ version 1.22.4
+// @description API Server for Projects-Manager Application
+
+// @host localhost:8080
 func main() {
 	if err := initConfig(); err != nil {
 		log.Fatal("Error at initializing config", err)

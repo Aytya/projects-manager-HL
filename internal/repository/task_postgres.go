@@ -116,6 +116,12 @@ func (repo TaskPostgres) UpdateTask(id string, task entity.Task) error {
 		argId++
 	}
 
+	if task.FinishedAt.Valid {
+		setValues = append(setValues, fmt.Sprintf("finished_at = $%d", argId))
+		args = append(args, task.FinishedAt.Time)
+		argId++
+	}
+
 	setQuery := strings.Join(setValues, ", ")
 	query := fmt.Sprintf("UPDATE %s SET %s WHERE id = $%d", tasksTable, setQuery, argId)
 	args = append(args, id)

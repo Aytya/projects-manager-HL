@@ -58,6 +58,12 @@ func (repo *UserPostgres) UpdateUser(id string, user entity.User) error {
 		argId++
 	}
 
+	if user.Role != "" {
+		setValues = append(setValues, fmt.Sprintf("role = $%d", argId))
+		args = append(args, user.Role)
+		argId++
+	}
+
 	setQuery := strings.Join(setValues, ", ")
 
 	query := fmt.Sprintf("UPDATE %s SET %s WHERE id = $%d", usersTable, setQuery, argId)

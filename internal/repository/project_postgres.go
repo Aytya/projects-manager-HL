@@ -40,6 +40,12 @@ func (repo ProjectPostgres) UpdateProject(id string, project entity.Project) err
 		argId++
 	}
 
+	if project.FinishedAt.Valid {
+		setValues = append(setValues, fmt.Sprintf("finished_at=$%d", argId))
+		args = append(args, project.FinishedAt)
+		argId++
+	}
+
 	setQuery := strings.Join(setValues, ", ")
 	query := fmt.Sprintf("UPDATE %s SET %s WHERE id = $%d", projectsTable, setQuery, argId)
 	args = append(args, id)

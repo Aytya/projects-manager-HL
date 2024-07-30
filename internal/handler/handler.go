@@ -3,6 +3,10 @@ package handler
 import (
 	"github.com/Aytya/projects-manager-HL/internal/service"
 	"github.com/gin-gonic/gin"
+	"github.com/swaggo/files"
+	"github.com/swaggo/gin-swagger"
+
+	_ "github.com/Aytya/projects-manager-HL/docs"
 )
 
 type Handler struct {
@@ -15,6 +19,8 @@ func NewHandler(service *service.Service) *Handler {
 
 func (h *Handler) InitRoutes() *gin.Engine {
 	router := gin.New()
+
+	router.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 
 	user := router.Group("/users")
 	{
